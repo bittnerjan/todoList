@@ -1,13 +1,32 @@
-const input = document.getElementById("input");
-const button = document.getElementById("add-button");
-const list = document.getElementById("list");
+let input = document.getElementById("input");
+let list = document.getElementById("list");
 let listItems = document.getElementsByTagName("li");
+let close = document.getElementsByClassName("close");
 
-button.addEventListener("click", addTask);
+input.addEventListener("keyup", function (event) {
+  if (event.defaultPrevented) {
+    return;
+  }
+  let key = event.key || event.keyCode;
+  if (key === "Enter" || key === 13) {
+    addTask();
+  }
+});
 
-appendRemoveEl();
+list.addEventListener(
+  "click",
+  function (event) {
+    if (event.target.tagName === "LI") {
+      event.target.classList.toggle("checked");
+    }
+  },
+  false
+);
 
-function appendRemoveEl() {
+appendRemoveButton();
+makeTaskRemovable();
+
+function appendRemoveButton() {
   for (let i = 0; i < listItems.length; i++) {
     let span = document.createElement("SPAN");
     let txt = document.createTextNode("\u00D7");
@@ -19,21 +38,26 @@ function appendRemoveEl() {
 
 function addTask() {
   if (input.value === "") {
-    alert("Your task cannot be empty!");
+    input.style.border = "thin solid red";
+    input.placeholder = "Your task cannot be empty!";
   } else {
     let listItem = document.createElement("li");
     let itemText = document.createTextNode(input.value);
     listItem.appendChild(itemText);
     list.appendChild(listItem);
-    appendRemoveEl();
+    input.value = "";
+    input.placeholder = "Please enter new TODO..";
+    input.style.border = "thin solid #95d5b2";
+    appendRemoveButton();
+    makeTaskRemovable();
   }
 }
 
-var close = document.getElementsByClassName("close");
-var i;
-for (i = 0; i < close.length; i++) {
-  close[i].onclick = function () {
-    var div = this.parentElement;
-    div.style.display = "none";
-  };
+function makeTaskRemovable() {
+  for (let i = 0; i < close.length; i++) {
+    close[i].onclick = function () {
+      let div = this.parentElement;
+      div.style.display = "none";
+    };
+  }
 }
