@@ -55,6 +55,7 @@ h1 {
   background-color: #74c69d;
   color: #081c15;
   outline: none;
+  cursor: pointer;
 }
 
 #input-group button:hover {
@@ -77,4 +78,18 @@ li {
 li:hover {
   background-color: #95d5b2;
   transform: scale(1.005);
+}
+
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 10px 16px 10px 16px;
+  border-radius: 0px 3px 3px 0px;
+}
+
+.close:hover {
+  background-color: #f44336;
+  color: white;
+  cursor: pointer;
 }
