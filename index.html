@@ -15,18 +15,30 @@
       href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div id="container">
-      <header>
+      <header id="head">
         <h1>My Todo List</h1>
+        <input
+          id="search-input"
+          type="text"
+          placeholder="&#xF002; Search for TODO.."
+          style="font-family: FontAwesome, Arial; font-style: normal"
+        />
       </header>
+
       <div id="input-group">
         <input id="input" type="text" placeholder="Please enter new TODO.." />
         <button onClick="addTask()">
           <i id="add-button" class="material-icons">add</i>
         </button>
       </div>
+
       <ul id="list">
         <li>go to supermarket</li>
         <li>cook</li>

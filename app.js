@@ -1,7 +1,8 @@
-let input = document.getElementById("input");
-let list = document.getElementById("list");
-let listItems = document.getElementsByTagName("li");
-let close = document.getElementsByClassName("close");
+const input = document.getElementById("input");
+const searchInput = document.getElementById("search-input");
+const list = document.getElementById("list");
+const listItems = document.getElementsByTagName("li");
+const close = document.getElementsByClassName("close");
 
 input.addEventListener("keyup", function (event) {
   if (event.defaultPrevented) {
@@ -22,6 +23,23 @@ list.addEventListener(
   },
   false
 );
+
+searchInput.addEventListener("input", function (event) {
+  if (event.defaultPrevented) {
+    return;
+  }
+  filterList(event.target.value);
+});
+
+function filterList(searchInput) {
+  for (let i = 0; i < listItems.length; i++) {
+    if (listItems[i].innerText.indexOf(searchInput) < 0) {
+      listItems[i].style.display = "none";
+    } else {
+      listItems[i].style.display = "";
+    }
+  }
+}
 
 appendRemoveButton();
 makeTaskRemovable();
@@ -60,4 +78,8 @@ function makeTaskRemovable() {
       div.style.display = "none";
     };
   }
+}
+
+function search() {
+  for (let i = 0; i < list.length; i++) {}
 }
