@@ -4,6 +4,9 @@ const list = document.getElementById("list");
 const listItems = document.getElementsByTagName("li");
 const close = document.getElementsByClassName("close");
 
+appendRemoveButton();
+makeTaskRemovable();
+
 input.addEventListener("keyup", function (event) {
   if (event.defaultPrevented) {
     return;
@@ -40,9 +43,6 @@ function filterList(searchInput) {
     }
   }
 }
-
-appendRemoveButton();
-makeTaskRemovable();
 
 function appendRemoveButton() {
   for (let i = 0; i < listItems.length; i++) {
